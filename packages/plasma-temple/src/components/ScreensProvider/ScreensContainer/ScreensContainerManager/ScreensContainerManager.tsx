@@ -23,7 +23,7 @@ export function ScreensContainerManager({
     const character = useAssistantCharacter();
     const theme = useAssistantTheme();
 
-    const { pushScreen, pushHistory, goToScreen } = useScreens();
+    const { pushScreen, pushHistory, goToScreen, popScreen } = useScreens();
 
     useMount(() => {
         const disposeStart = getAssistant().on('start', () => {
@@ -32,7 +32,7 @@ export function ScreensContainerManager({
         });
 
         const disposeData = getAssistant().on('data', (command) => {
-            onData?.({ command, pushScreen, pushHistory, goToScreen });
+            onData?.({ command, pushScreen, pushHistory, goToScreen, popScreen });
         });
 
         return () => {
